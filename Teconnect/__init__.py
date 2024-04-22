@@ -1,8 +1,10 @@
 from flask import Flask
+from flask_socketio import SocketIO
 
 app = Flask(__name__)
+socketio = SocketIO(app)
 
-from Teconnect.routes import index 
+from Teconnect.routes import routes 
 
 
 #Aunque routes está en la misma carpeta, se tiene que importar desde la relación

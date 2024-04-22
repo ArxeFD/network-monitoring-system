@@ -1,4 +1,4 @@
-from Teconnect import app
+from Teconnect import app, socketio
 
 if __name__ == "__main__":
-    app.run(port=11000, debug=True)
+    socketio.run(app, port=11000, debug=True)

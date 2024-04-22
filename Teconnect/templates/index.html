@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teconnect</title>
-    <link rel="stylesheet" href="../static/css/styles.css">
-</head>
+    <!-- <link rel="stylesheet" href="../static/css/styles.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/styles.css') }}">
+    <script src="../static/js/script.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
 <body>
     <h1>Teconnect</h1>
     <div class="menu">
@@ -13,14 +16,26 @@
             <li class="submenu"><a href="inicio.html">Inicio</a></li>
             <li class="submenu"><a href="quienes-somos.html">Quienes somos</a></li>
             <li class="submenu"><a href="sobre-proyecto.html">Sobre este Proyecto</a></li>
-            <li class="submenu"><a href="contacto.html">Contactanos</a></li>
+            <li class="submenu"><a href="iniciosesion.html">Iniciar Sesion</a></li>
         </ul>
     </div>
-    <div class="phone">
+    <div class="phone" id="chaifon">
         <div class="screen">
             <h1>Bienvenido a Teconnect</h1>
-            <p>Una plataforma para conectarte con el mundo.</p>
-            <button class="btn">Iniciar</button>
+            <p>Ingresa los siguientes datos para poder entrar por medio de SSH.</p>
+            <div class="credentials">
+                <label for="ip">IP:</label><br>
+                <input type="text" id="ip" name="ip"><br>
+            </div>
+            <div class="credentials">
+                <label for="username">Usuario:</label><br>
+                <input type="text" id="username" name="username"><br>
+            </div>
+            <div class="credentials">
+                <label for="password">Contraseña:</label><br>
+                <input type="password" id="password" name="password"><br>
+            </div>
+            <button class="btnClass" id="btn">Iniciar</button>
         </div>
     </div>
 </body>
