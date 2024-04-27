@@ -1,6 +1,5 @@
 from email.message import EmailMessage
 import smtplib
-#import pywhatkit
 
 #password = 'boaa bnpb dtkl jfrn'
 def EnviarCorreo():
@@ -22,9 +21,4 @@ def EnviarCorreo():
     #Puede que el correo llegue en spam
     smtp.quit()
 
-#def WhatsApp():
- #   pywhatkit.sendwhatmsg_instantly("Cel", "Se detectó una desconexión en el router 2")
- #   print("Mensaje Enviado")
-
 EnviarCorreo()
-#WhatsApp()
