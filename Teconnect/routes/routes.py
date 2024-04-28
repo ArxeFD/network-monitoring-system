@@ -17,7 +17,6 @@ def handle_start_discovery():
         ],
         'edges' : [
             {'from': 1, 'to' : 2},
-            {'from': 2, 'to' : 3},
             {'from': 3, 'to' : 1}
         ]
     }

@@ -25,7 +25,8 @@ document.addEventListener("DOMContentLoaded", function() {
             edges: edgesDataSet
         };
 
-        var options = {}
+        var options = {};
+
         var network = new vis.Network(container, data, options);
 
     });
