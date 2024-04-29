@@ -1,5 +1,6 @@
 from email.message import EmailMessage
 import smtplib
+from twilio.rest import Client
 
 #password = 'boaa bnpb dtkl jfrn'
 def EnviarCorreo():
@@ -20,5 +21,16 @@ def EnviarCorreo():
     smtp.sendmail(remitente,destinatario,email.as_string())
     #Puede que el correo llegue en spam
     smtp.quit()
+def Whatsapp():
+    account_sid = "AC250cc50f0ae7c98fa5ae906ff9a8310b"
+    auth_token = "e64b29c3bf0be88f054ae8cbf4ed4170"
+    twilio_number = "+12183187909"
+    client = Client(account_sid, auth_token)
+    message = client.messages.create(
+        body="Mensaje de prueba",
+        from_=twilio_number,
+        to="+523322068206"
+    )
 
 EnviarCorreo()
+Whatsapp()
