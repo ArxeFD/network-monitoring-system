@@ -17,7 +17,7 @@ def banner2():#Opción 2 de un banner para el dispositivo
     conn.send_command("banner motd # SOLO ACCESO AUTORIZADO #")
     conn.disconnect()
 
-def hostname():#Canbiar el hostname del dispositivo
+def hostname():#Cambiar el hostname del dispositivo
     hostname = 'Lo que ponga el usuario'
     conn = ConnectHandler(**device)
     conn.send_command("hostname " +  hostname)
