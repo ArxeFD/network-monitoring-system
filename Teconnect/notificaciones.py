@@ -1,6 +1,6 @@
 from email.message import EmailMessage
 import smtplib
-from twilio.rest import Client
+#from twilio.rest import Client
 
 #password = 'boaa bnpb dtkl jfrn'
 def EnviarCorreo():
