@@ -23,6 +23,11 @@ def Hostname():
     conn.send_command("hostname " +  hostname)
     conn.disconnect()
 
+def PassEncryption():#Cifrar las contraseñas
+    conn = ConnectHandler(**device)
+    conn.send_command("service password encryption")
+    conn.disconnect()
+
 
 
 
