@@ -58,6 +58,25 @@ def showFileSystem():
     output = conn.send_command("show file system")#muestra el estado de los sistemas de archivos en el dispositivo, incluyendo el almacenamiento disponible y utilizado en cada uno de ellos
     conn.disconnect()
 
+def excludeDHCP():
+    excludedIP = "La ip que introduzca el usuario"
+    conn = ConnectHandler(**device)
+    conn.send_command("ip dhcp excluded-address " + excludedIP)#Excluye la IP que haya indicado el usuario para el servicio DHCP
+    conn.disconnect()
+
+def excludeRangeDHCP():
+    fistExcludedIP = "La ip que introduzca el usuario"
+    lastExcludedIP = "La ip que introduzca el usuario"
+    conn = ConnectHandler(**device)
+    conn.send_command("ip dhcp excluded-address " + fistExcludedIP + " " + lastExcludedIP)#Excluye el rango de IPs que haya indicado el usuario para el servicio DHCP
+    conn.disconnect()
+
+def loggingSynchronous():
+    conn = ConnectHandler(**device)
+    conn.send_command("logging synchronous")#Sincroniza los mensajes del systema
+    conn.disconnect()
+
+
 
 
 
