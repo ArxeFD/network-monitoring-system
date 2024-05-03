@@ -4,7 +4,7 @@ from pprint import pprint
 
 ips = []
 neighbors = []
-queueToConnect = ["192.168.1.1"]
+queueToConnect = {"192.168.1.1"}
 
 def startDiscovery():
     global ips, neighbors, queueToConnect
@@ -13,7 +13,7 @@ def startDiscovery():
         print("No hay dispositivos en la lista")
         return
 
-    ip = queueToConnect.pop(0)
+    ip = queueToConnect.pop()
 
     ips.append(ip)
 
@@ -48,12 +48,10 @@ def addToQueue(conn): #Agrego a la cola ips que no estén en ips para no hacer b
     output = conn.send_command("show cdp neigh detail", use_textfsm=True)
     for i in output:
         if i["management_ip"] not in ips:
-            queueToConnect.append(i["management_ip"])
+            queueToConnect.add(i["management_ip"])
 
 
 startDiscovery()
-print(ips)
-print("----------------\n")
 pprint(neighbors)
 
 
