@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     //Cuando ya se haga la lógica de descubrimiento, python enviará la topología de vuelta a js
     //con el mensaje 'topology_data', y lo enviará junto con un diccionario de la topologia
+    
     socket.on('topology_data', function(topologyData){ //Aquí espera q le llegue el mensaje 'topology_data' para hacer algo
         
         console.log(topologyData);
