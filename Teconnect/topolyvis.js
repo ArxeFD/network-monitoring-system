@@ -39,11 +39,11 @@ function init() {
   // Definir el modelo de datos del diagrama, que incluye nodos y enlaces
   diagram.model = new go.GraphLinksModel(
       [
-          { key: 1, foot: "R1", img: "static/img/router-svgrepo-com.svg", IP: "192.168.10.1" }, // datos del nodo router
-          { key: 2, foot: "R2", img: "static/img/router-svgrepo-com.svg", IP: "192.168.20.1" }, // datos del nodo router
+          { key: 1, foot: "R1", img: "static/img/router-svgrepo-com.svg" }, // datos del nodo router
+          { key: 2, foot: "R2", img: "static/img/router-svgrepo-com.svg" }, // datos del nodo router
           { key: 3, foot: "S1", img: "static/img/switch.svg" },
-          { key: 4, foot: "R3", img: "static/img/router-svgrepo-com.svg", IP: "192.168.10.1" }, // datos del nodo router
-          { key: 5, foot: "R4", img: "static/img/router-svgrepo-com.svg", IP: "192.168.20.1" }, // datos del nodo router
+          { key: 4, foot: "R3", img: "static/img/router-svgrepo-com.svg" }, // datos del nodo router
+          { key: 5, foot: "R4", img: "static/img/router-svgrepo-com.svg" }, // datos del nodo router
           { key: 6, foot: "S2", img: "static/img/switch.svg" } // datos del nodo switch
       ],
       [
@@ -77,4 +77,4 @@ function showContextMenu(e, obj) {
 }
 
 // Ejecutar la función init cuando el DOM esté completamente cargado
-document.addEventListener("DOMContentLoaded", init);
+//document.addEventListener("DOMContentLoaded", init);

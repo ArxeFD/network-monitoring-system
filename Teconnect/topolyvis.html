@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/gojs/release/go-debug.js"></script>
-    <script src = "topolyvis.js"></script>    
+    <script src = "topolyvis.js"></script>
+    <script src = "topologia.js"></script>       
     <title>Topología</title>
 </head>
-<body>
-    <div id="myDiagramDiv" style="border: solid 3px blue; width:1100px; height:730px"></div>
+<body onload="init()">
+    <div id="myDiagramDiv" style="border: solid 3px blue; width:1150px; height:740px"></div>
 
     <!-- Define el menú contextual -->
     <div id="contextMenu" style="display: none; position: absolute; background-color: #f9f9f9; border: 1px solid #aaa; padding: 5px;">
