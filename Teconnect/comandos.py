@@ -73,7 +73,7 @@ def excludeRangeDHCP():
 
 def loggingSynchronous():
     conn = ConnectHandler(**device)
-    conn.send_command("logging synchronous")#Sincroniza los mensajes del systema
+    conn.send_command("logging synchronous")#Sincroniza los mensajes del sistema
     conn.disconnect()
 
 
