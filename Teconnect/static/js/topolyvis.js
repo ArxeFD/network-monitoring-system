@@ -39,20 +39,11 @@ function init() {
   // Definir el modelo de datos del diagrama, que incluye nodos y enlaces
   diagram.model = new go.GraphLinksModel(
       [
-          { key: 1, foot: "R1", img: "static/img/router-svgrepo-com.svg" }, // datos del nodo router
-          { key: 2, foot: "R2", img: "static/img/router-svgrepo-com.svg" }, // datos del nodo router
-          { key: 3, foot: "S1", img: "static/img/switch.svg" },
-          { key: 4, foot: "R3", img: "static/img/router-svgrepo-com.svg" }, // datos del nodo router
-          { key: 5, foot: "R4", img: "static/img/router-svgrepo-com.svg" }, // datos del nodo router
-          { key: 6, foot: "S2", img: "static/img/switch.svg" } // datos del nodo switch
+          { "key": "1", "foot" : "R1", "img" : "static/img/router-svgrepo-com.svg" }, // datos del nodo router
+          { "key": "2", "foot" : "R2", "img" : "static/img/router-svgrepo-com.svg" } // datos del nodo router
       ],
       [
-          { from: 6, to: 1, startInterface: "Se 0/0/0", endInterface: "Gi 0/0/0" }, // enlace del nodo 1 al nodo 2
-          { from: 1, to: 3, startInterface: "Se 0/0/1", endInterface: "Gi 0/0/1" }, // enlace del nodo 1 al nodo 3
-          { from: 3, to: 2 },
-          { from: 1, to: 4 }, // enlace del nodo 1 al nodo 3
-          { from: 3, to: 5 },
-          { from: 3, to: 6 } // enlace del nodo 3 al nodo 2
+          { "from" : "2" , "to" : "1" , "startInterface" : "Se 0/0/0", "endInterface" : "Gi 0/0/0" } // enlace del nodo 1 al nodo 
       ]
   );
 }
