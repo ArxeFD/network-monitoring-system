@@ -1,13 +1,20 @@
 function init() {
 
-  connectionsDict = [{'from': '192.168.1.1', 'to': '192.168.1.2', 'fromInt': 'GigabitEthernet0/0/0', 'toInt': 'GigabitEthernet1/0/1'}, 
-                    {'from': '192.168.1.1', 'to': '192.168.2.2', 'fromInt': 'GigabitEthernet0/0/1', 'toInt': 'GigabitEthernet0/0/0'}, 
-                    {'from': '192.168.1.2', 'to': '192.168.1.1', 'fromInt': 'GigabitEthernet1/0/1', 'toInt': 'GigabitEthernet0/0/0'}, 
-                    {'from': '192.168.2.2', 'to': '192.168.2.1', 'fromInt': 'GigabitEthernet0/0/0', 'toInt': 'GigabitEthernet0/0/1'}];
+  //var socket = io.connect()
 
-  nodesDict = [{'key': '192.168.1.1', 'foot': 'R1', 'img': 'static/img/router-svgrepo-com.svg'}, 
-              {'key': '192.168.1.2', 'foot': 'S1', 'img': 'static/img/switch.svg'}, 
-              {'key': '192.168.2.2', 'foot': 'R2', 'img': 'static/img/router-svgrepo-com.svg'}];
+  connectionsDict = [{'from': '192.168.0.1', 'to': '192.168.0.2', 'fromInt': 'GigabitEthernet0/0', 'toInt': 'GigabitEthernet0/1'}, 
+                    {'from': '192.168.0.1', 'to': '192.168.1.2', 'fromInt': 'Serial0/0/0', 'toInt': 'Serial0/0/0'}, 
+                    {'from': '192.168.0.1', 'to': '192.168.2.2', 'fromInt': 'Serial0/0/1', 'toInt': 'Serial0/0/1'}, 
+                    {'from': '192.168.2.2', 'to': '192.168.2.1', 'fromInt': 'Serial0/0/1', 'toInt': 'Serial0/0/1'}, 
+                    {'from': '192.168.2.2', 'to': '192.168.3.1', 'fromInt': 'Serial0/0/0', 'toInt': 'Serial0/0/1'}, 
+                    {'from': '192.168.0.2', 'to': '192.168.0.1', 'fromInt': 'GigabitEthernet0/1', 'toInt': 'GigabitEthernet0/0'}, 
+                    {'from': '192.168.1.2', 'to': '192.168.1.1', 'fromInt': 'Serial0/0/0', 'toInt': 'Serial0/0/0'}, 
+                    {'from': '192.168.1.2', 'to': '192.168.3.2', 'fromInt': 'Serial0/0/1', 'toInt': 'Serial0/0/0'}];
+
+  nodesDict = [{'key': '192.168...1', 'foot': 'R7', 'img': 'static/img/router-svgrepo-com.svg'}, 
+               {'key': '192.168.2.2', 'foot': 'R9', 'img': 'static/img/router-svgrepo-com.svg'}, 
+               {'key': '192.168.0.2', 'foot': 'S7', 'img': 'static/img/switch.svg'}, 
+               {'key': '192.168.1.2', 'foot': 'R8', 'img': 'static/img/router-svgrepo-com.svg'}];
 
   // Crear el diagrama
   const diagram = new go.Diagram("myDiagramDiv");
@@ -67,13 +74,13 @@ function init() {
         })),
     );
 
-  let createdLinks = []; // Array para llevar un registro de los enlaces creados
-
   // Agregar nodos al diagrama
   nodesDict.forEach(node => {
     var nodeData = { key: node.key, foot: node.foot, img: node.img };
     diagram.model.addNodeData(nodeData);
   });
+
+  let createdLinks = []; // Array para llevar un registro de los enlaces creados
 
   // Agregar enlaces al diagrama
   connectionsDict.forEach(connection => {
@@ -103,7 +110,6 @@ function init() {
 
   // Crear un layout Force-Directed
   var layout = make(go.ForceDirectedLayout);
-
   // Asignar el layout al diagrama
   diagram.layout = layout;
 }
