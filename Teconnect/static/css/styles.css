@@ -11,6 +11,9 @@ body {
 
 .h1 {
     margin-bottom: 20px; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    color: white; 
+    padding: 10px 20px;
 }
 
 .menu {
@@ -44,15 +47,16 @@ body {
 }
 
 .phone {
-    margin-top: 40px; 
-    width: 300px;
-    height: 500px;
+    margin-top: 30px; 
+    width: 450px;
+    height: 550px;
     background-color: black;
     border-radius: 20px;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .screen {
@@ -67,7 +71,7 @@ body {
     padding: 20px;
 }
 
-.btnClass {
+.btn {
     padding: 10px 20px;
     background-color: blue;
     color: white;
@@ -76,4 +80,300 @@ body {
     cursor: pointer;
     font-size: 16px;
     margin-top: 20px;
+}
+
+.credentials {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.credentials label {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.credentials input {
+    flex: 2;
+    margin-left: 10px;
+}
+
+img, video {
+    display: block; 
+    margin-top: 20px; 
+    width: 80%; 
+    max-width: 1000px; 
+    height: auto; 
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+#imagen-teconnect {
+    float: right; 
+    margin-right: 20px; 
+    width: 500px;
+    height: 500px;
+}
+
+.text-container {
+    overflow: hidden; 
+}
+
+p {
+    text-align: justify; 
+}
+
+.menu {
+    color: black;
+    padding: 10px 0;
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.menu ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.menu ul li a {
+    color: black;
+    text-decoration: none;
+}
+
+.login-form {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.login-form input[type="submit"] {
+    width: 100%;
+    padding: 12px; 
+    background-color: blue;
+    color: white;
+    border: 2px solid blue; 
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px; 
+    margin-top: 20px;
+}
+
+.login-form input[type="submit"]:hover {
+    background-color: #007bff; 
+    border-color: #007bff; /
+}
+
+.register-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-button a {
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #333;
+    padding: 8px 20px;
+    border-radius: 3px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.register-button a:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.register-form {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.register-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.register-form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.register-form input[type="text"],
+.register-form input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.register-form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.back-to-login {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.back-to-login a {
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #333;
+    padding: 8px 20px;
+    border-radius: 3px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.back-to-login a:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.teconnect-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: beige;
+}
+
+.teconnect-header {
+    color: black;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.teconnect-title {
+    margin: 0;
+    font-size: 28px;
+}
+
+.teconnect-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.teconnect-nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.teconnect-nav li a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+
+.teconnect-main {
+    padding: 20px;
+    text-align: center;
+}
+
+.teconnect-main img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.teconnect-main p {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.menu {
+    padding: 10px 0;
+    text-align: center;
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 18px;
+}
+
+.text-container {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#imagen-teconnect {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.text-container p {
+    text-align: justify;
+    line-height: 1.6;
+}
+
+.credentials {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
 }

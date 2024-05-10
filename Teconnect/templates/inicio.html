@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teconnect</title>
-    <link rel="stylesheet" href="../static/css/styles.css">
+    <!-- <link rel="stylesheet" href="../static/css/styles.css"> -->
     <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/styles.css') }}">
     <script src="../static/js/script.js"></script>
     <script src="../static/node_modules/socket.io/client-dist/socket.io.min.js"></script>
@@ -16,7 +16,6 @@
             <li class="submenu"><a href="inicio.html">Inicio</a></li>
             <li class="submenu"><a href="quienes-somos.html">Quienes somos</a></li>
             <li class="submenu"><a href="sobre-proyecto.html">Sobre este Proyecto</a></li>
-            <li class="submenu"><a href="iniciosesion.html">Iniciar Sesion</a></li>
         </ul>
     </div>
     <div class="phone" id="myDiagramDiv">
@@ -36,9 +35,8 @@
                     <label for="password">Contraseña:</label><br>
                     <input type="password" id="password" name="password"><br>
                 </div>
-                <button type="submit" class="btnClass" id="btn"">Iniciar</button>
+                <button type="submit" class="btnClass" id="btn">Iniciar</button>
             </form>
-        </div>
     </div>
 </body>
 </html>
