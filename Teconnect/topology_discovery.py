@@ -1,6 +1,6 @@
 from netmiko import ConnectHandler
-#from . import deviceClass
-import deviceClass
+from . import deviceClass
+#import deviceClass
 
 ips = list()
 neighbors = list()
