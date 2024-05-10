@@ -23,13 +23,13 @@ document.addEventListener("DOMContentLoaded", function() {
     socket.on('topology_data', function(topologyData){ //Aquí espera q le llegue el mensaje 'topology_data' para hacer algo
 
         document.getElementById("myDiagramDiv").style.width = "1100px";
-        document.getElementById("myDiagramDiv").innerHTML = "";
+        document.getElementById("screen").innerHTML = "";
 
         var connectionsDict = topologyData.neighbors;
         var nodesDict = topologyData.nodes;
 
      // Crear el diagrama
-        const diagram = new go.Diagram("myDiagramDiv");
+        const diagram = new go.Diagram("screen");
         const make = go.GraphObject.make;
 
         // Definir la plantilla para los nodos

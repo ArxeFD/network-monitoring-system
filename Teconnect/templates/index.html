@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teconnect</title>
-    <!-- <link rel="stylesheet" href="../static/css/styles.css"> -->
+    <link rel="stylesheet" href="../static/css/styles.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/styles.css') }}">
     <script src="../static/js/script.js"></script>
-    <!-- <script src="../node_modules/socket.io/client-dist/socket.io.min.js"></script> -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
-    <script src="../../node_modules/gojs/release/go-debug.js"></script>
+    <script src="../static/node_modules/socket.io/client-dist/socket.io.min.js"></script>
+    <script src="../static/node_modules/gojs/release/go-debug.js"></script>
 <body>
     <h1>Teconnect</h1>
     <div class="menu">
@@ -21,7 +20,7 @@
         </ul>
     </div>
     <div class="phone" id="myDiagramDiv">
-        <div class="screen">
+        <div class="screen" id="screen">
             <h1>Bienvenido a Teconnect</h1>
             <p>Ingresa los siguientes datos para poder entrar por medio de SSH.</p>
             <form id="sshForm">
@@ -37,7 +36,7 @@
                     <label for="password">Contraseña:</label><br>
                     <input type="password" id="password" name="password"><br>
                 </div>
-                <button type="submit" class="btnClass" id="btn">Iniciar</button>
+                <button type="submit" class="btnClass" id="btn"">Iniciar</button>
             </form>
         </div>
     </div>
