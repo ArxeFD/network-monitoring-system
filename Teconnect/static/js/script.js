@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
     socket.on('topology_data', function(topologyData){ //Aquí espera q le llegue el mensaje 'topology_data' para hacer algo
 
         document.getElementById("myDiagramDiv").style.width = "1100px";
+        document.getElementById("myDiagramDiv").innerHTML = "";
 
         var connectionsDict = topologyData.neighbors;
         var nodesDict = topologyData.nodes;
