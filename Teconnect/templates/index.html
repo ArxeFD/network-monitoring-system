@@ -7,7 +7,7 @@
     <!-- <link rel="stylesheet" href="../static/css/styles.css"> -->
     <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/styles.css') }}">
     <script src="../static/js/script.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <!-- <script src="../node_modules/socket.io/client-dist/socket.io.min.js"></script> -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
 <body>
     <h1>Teconnect</h1>
@@ -23,19 +23,21 @@
         <div class="screen">
             <h1>Bienvenido a Teconnect</h1>
             <p>Ingresa los siguientes datos para poder entrar por medio de SSH.</p>
-            <div class="credentials">
-                <label for="ip">IP:</label><br>
-                <input type="text" id="ip" name="ip"><br>
-            </div>
-            <div class="credentials">
-                <label for="username">Usuario:</label><br>
-                <input type="text" id="username" name="username"><br>
-            </div>
-            <div class="credentials">
-                <label for="password">Contraseña:</label><br>
-                <input type="password" id="password" name="password"><br>
-            </div>
-            <button class="btnClass" id="btn">Iniciar</button>
+            <form id="sshForm">
+                <div class="credentials">
+                    <label for="ip">IP:</label><br>
+                    <input type="text" id="ip" name="ip"><br>
+                </div>
+                <div class="credentials">
+                    <label for="username">Usuario:</label><br>
+                    <input type="text" id="username" name="username"><br>
+                </div>
+                <div class="credentials">
+                    <label for="password">Contraseña:</label><br>
+                    <input type="password" id="password" name="password"><br>
+                </div>
+                <button type="submit" class="btnClass" id="btn">Iniciar</button>
+            </form>
         </div>
     </div>
 </body>

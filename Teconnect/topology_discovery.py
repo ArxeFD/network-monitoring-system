@@ -1,36 +1,53 @@
 from netmiko import ConnectHandler
-from pprint import pprint
+#from . import deviceClass
+import deviceClass
 
+ips = list()
+neighbors = list()
+queueToConnect = set()
+relatedToKeyList = list()
+DevicesObj = list()
+nodes = list()
 
-ips = []
-neighbors = []
-queueToConnect = ["192.168.1.1"]
-
-def startDiscovery():
-    global ips, neighbors, queueToConnect
+def startDiscovery(username, password):
+    global ips, neighbors, queueToConnect, DevicesObj
 
     if not queueToConnect:
         print("No hay dispositivos en la lista")
         return
 
-    ip = queueToConnect.pop(0)
+    ip = queueToConnect.pop()
 
     ips.append(ip)
 
     device = {
         "device_type": "cisco_ios",
         "host": ip,
-        "username": "gmedina",
-        "password": "cisco", 
+        "username": username,
+        "password": password,
     }
-
+    #Hago conexión con el dispositivo
     connection = ConnectHandler(**device)
+
+    #Hago la lógica de los nodos
+    hostname = checkHostname(connection)
+    id = connection.host
+    deviceType = checkDevice(connection)
+    new_device = deviceClass.Device(hostname, id, deviceType)
+    DevicesObj.append(new_device)
+    print(DevicesObj)
+
+    #Hago la lógica para sacar los enlaces de los nodos
     interfacesIp(connection)
+    ipsRelatedToKey(connection)
     findDeviceNeighbors(connection)
     addToQueue(connection)
-    startDiscovery()
+    checkForSameDevice()
 
-                
+    connection.disconnect()
+    startDiscovery(username, password)
+
+#Funciones necesarias para descubrir la topología y crear los enlaces entre los nodos
 
 def interfacesIp(conn): #Función donde meto todas las ips de un dispositivo para que no se vuelvan a conectar de vuelta
     output = conn.send_command("show ip int brief", use_textfsm=True)
@@ -41,19 +58,76 @@ def interfacesIp(conn): #Función donde meto todas las ips de un dispositivo par
 def findDeviceNeighbors(conn): #Pongo de dónde a donde está conectado
     output = conn.send_command("show cdp neigh detail", use_textfsm=True)
     for i in output:
-        neighDict = {'from': conn.host, 'to' : i["management_ip"]}
+        neighDict = {'from': conn.host, 'to' : i["management_ip"], 'fromInt' : i["local_port"], 'toInt' : i["remote_port"]}
         neighbors.append(neighDict)
 
 def addToQueue(conn): #Agrego a la cola ips que no estén en ips para no hacer bucles
     output = conn.send_command("show cdp neigh detail", use_textfsm=True)
     for i in output:
         if i["management_ip"] not in ips:
-            queueToConnect.append(i["management_ip"])
+            queueToConnect.add(i["management_ip"])
+
+def checkForSameDevice():
+    global queueToConnect
+    ips_set = set(ips)
+    queueToConnect -= ips_set
+
+def ipsRelatedToKey(conn): #Agrego ips relacionadas a la ip del host al que me conecto
+    global relatedToKeyList
+    output = conn.send_command("show ip int brief", use_textfsm=True)
+    ipsList = [interface["ip_address"] for interface in output if interface["ip_address"] != "unassigned"]
+    relation = {conn.host : ipsList}
+    relatedToKeyList.append(relation)
+
+def updateLinksWithRelatedIPs():
+    global neighbors, relatedToKeyList
+    for link in neighbors:
+        to_ip = link['to']
+        for related_ips_dict in relatedToKeyList:
+            for device_ip, related_ips in related_ips_dict.items():
+                if to_ip in related_ips:
+                    link['to'] = device_ip
 
 
+#Funciones necesarias para crear los objetos y agregar nodos
+def checkHostname(conn):
+    output = conn.send_command("show version", use_textfsm=True)
+    hostname = output[0]["hostname"]
+    return hostname
+
+def checkDevice(conn):
+    output = conn.send_command("show ip int brief", use_textfsm=True)
+    if len(output) > 6:
+        device = "Switch"
+    else:
+        device = "Router"
+
+    return device
+
+def addNodes():
+    for i in DevicesObj:
+        if i.device_type == "Switch":
+            img = "static/img/switch.svg"
+        else:
+            img = "static/img/router-svgrepo-com.svg"
+
+        nodes.append({'key': i.id, 'foot': i.hostname,'img': img})
+
+#Funciones que llamará el socket para pedir la información que requiere
+def initQueue(ip):
+    queueToConnect.add(ip)
+
+def returnNodes():
+    return nodes
+def returnNeighbors():
+    return neighbors
+
+'''
 startDiscovery()
-print(ips)
-print("----------------\n")
-pprint(neighbors)
-
-
+addNodes()
+updateLinksWithRelatedIPs()
+print(neighbors)
+print("\n")
+print(nodes)
+print(relatedToKeyList)
+'''
