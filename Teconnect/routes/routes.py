@@ -1,5 +1,6 @@
 from Teconnect import app, socketio
 from flask import render_template
+from Teconnect import topology_discovery as td
 
 @app.route("/")
 def index():
@@ -8,16 +9,18 @@ def index():
 
  
 @socketio.on('start_discovery')
-def handle_start_discovery():
-    topology_data = {
-        'nodes': [
-            {'id' : 1, 'label' : 'Router1', 'shape':'image', 'image': '../static/img/router-svgrepo-com.svg'},
-            {'id' : 2, 'label' : 'Router2', 'shape':'image', 'image': '../static/img/router-svgrepo-com.svg'},
-            {'id' : 3, 'label' : 'Switch1', 'shape':'image', 'image': '../static/img/switch.svg'}
-        ],
-        'edges' : [
-            {'from': 1, 'to' : 2},
-            {'from': 3, 'to' : 1}
-        ]
-    }
-    socketio.emit('topology_data', topology_data)
+def handle_start_discovery(data):
+    ip = data['ip']
+    username = data['username']
+    password = data['password']
+    td.initQueue(ip)
+    td.startDiscovery(username, password)
+    td.addNodes()
+    td.updateLinksWithRelatedIPs()
+    nodes = td.returnNodes()
+    neighbors = td.returnNeighbors()
+    socketio.emit("topology_data", {'nodes' : nodes, 'neighbors' : neighbors})
+
+@socketio.on('test')
+def testSocket(data):
+    socketio.emit("messageTest", "response from server" )
