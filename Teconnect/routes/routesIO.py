@@ -1,12 +1,5 @@
 from Teconnect import app, socketio
-from flask import render_template
 from Teconnect import topology_discovery as td
-
-@app.route("/")
-def index():
-    return render_template("index.html")
-
-
  
 @socketio.on('start_discovery')
 def handle_start_discovery(data):
