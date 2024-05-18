@@ -1,42 +1,124 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <label for="">SSH: </label>
+                <input id="ip" type="text" name="ip" placeholde
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teconnect</title>
-    <!-- <link rel="stylesheet" href="../static/css/styles.css"> -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/styles.css') }}">
+    <title>Topologia</title>
+    <link rel="stylesheet" href="../static/css/inicio.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/inicio2.css') }}">
     <script src="../static/js/script.js"></script>
     <script src="../static/node_modules/socket.io/client-dist/socket.io.min.js"></script>
     <script src="../static/node_modules/gojs/release/go-debug.js"></script>
+</head>
 <body>
-    <h1>Teconnect</h1>
-    <div class="menu">
-        <ul>
-            <li class="submenu"><a href="inicio.html">Inicio</a></li>
-            <li class="submenu"><a href="quienes-somos.html">Quienes somos</a></li>
-            <li class="submenu"><a href="sobre-proyecto.html">Sobre este Proyecto</a></li>
-        </ul>
-    </div>
-    <div class="phone" id="myDiagramDiv">
-        <div class="screen" id="screen">
-            <h1>Bienvenido a Teconnect</h1>
-            <p>Ingresa los siguientes datos para poder entrar por medio de SSH.</p>
-            <form id="sshForm">
-                <div class="credentials">
-                    <label for="ip">IP:</label><br>
-                    <input type="text" id="ip" name="ip"><br>
-                </div>
-                <div class="credentials">
-                    <label for="username">Usuario:</label><br>
-                    <input type="text" id="username" name="username"><br>
-                </div>
-                <div class="credentials">
-                    <label for="password">Contraseña:</label><br>
-                    <input type="password" id="password" name="password"><br>
-                </div>
-                <button type="submit" class="btnClass" id="btn">Iniciar</button>
+    <header class="header">
+
+        <h1>Teconnect</h1>
+
+        <div>
+            <form action="" id="sshForm">
+               r="IP">
+                <input id="username" type="text" name="username" placeholder="Usuario">
+                <input id="password" type="password" name="password" placeholder="Contraseña">
+                <button type="submit" class="btnClass" id="btn">Descubrir</button>
+                <button class="btnClass" id="btnRestart">Reiniciar</button>
             </form>
+        </div>
+
+    </header>
+
+    <div class="container">
+
+        <div id="myDiagramDiv"></div>
+
+        <div id="optionsDiv">
+            <h3 id="hostname"></h3>
+            <div class="optionBox" onclick="mostrarHostname();">Hostname</div>
+            <form action="" id="hostName" style="display:none;">
+                <label for="hostname">Hostname: </label>
+                <input type="text" name="hostname" id="nombreHost">
+                <button onclick="mandarHostname();">Hecho</button>
+            </form>
+            <div class="optionBox" onclick="mostrarBanner();">Banner</div>
+            <form action="" id="Banner" style="display:none;">
+                <label for="nameBanner">Banner: </label>
+                <input type="text" name="nombreBanner" id="nombreBanner">
+                <button onclick="mandarBanner();">Hecho</button>
+            </form>
+            <div class="optionBox" onclick="mostrarNTPServer();">Servidor NTP</div>
+            <form action="" id="ntp" style="display:none;">
+                <label for="ntpServer">IP del servidor: </label>
+                <input type="text" name="ipNTP" id="ipNTP">
+                <button onclick="mandarNTPServer();">Hecho</button>
+            </form>
+            <div class="optionBox" onclick="mostrarVTPServer();">Servidor VTP (Solo Switch)</div>
+            <form action="" id="vtp" style="display:none;">
+                <label for="ntpServer">Dominio VTP: </label>
+                <input type="text" name="domVTP" id="domVTP">
+                <br>
+                <label for="ntpServer">Contraseña VTP: </label>
+                <input type="text" name="passVTP" id="passVTP">
+                <br>
+                <button onclick="mandarVTPServer();">Hecho</button>
+            </form>
+            <div class="optionBox" onclick="mostrarVTPClient();">Cliente VTP (Solo Switch)</div>
+            <form action="" id="vtpC" style="display:none;">
+                <label for="ntpServer">Dominio VTP: </label>
+                <input type="text" name="domVTPC" id="domVTPC">
+                <br>
+                <label for="ntpServer">Contraseña VTP: </label>
+                <input type="text" name="passVTPC" id="passVTPC">
+                <br>
+                <button onclick="mandarVTPClient();">Hecho</button>
+            </form>
+            <div class="optionBox" onclick="mostrarCrearVLAN();">Crear una VLAN (Solo Switch)</div>
+            <form action="" id="cVlan" style="display:none;">
+                <label for="nVlan">Número de VLAN: </label>
+                <input type="text" name="numVlan" id="numVlan">
+                <br>
+                <label for="ntpServer">Nombre de la VLAN: </label>
+                <input type="text" name="nameVlan" id="nameVlan">
+                <br>
+                <button onclick="mandarCrearVLAN();">Hecho</button>
+            </form>
+            <div class="optionBox" onclick="mostrarExcluirDHCP();">Excluir IPs de DHCPv4 (Solo Router)</div>
+            <form action="" id="exDHCP" style="display:none;">
+                <label for="nVlan">Excluir: </label>
+                <input type="text" name="exclDHCP" id="exclDHCP" placeholder="Una IP o Rango">
+                <button onclick="mandarExcluirDHCP();">Hecho</button>
+            </form>
+            <div class="optionBox" onclick="mostrarCrearPoolDHCPv4();">Crear Pool de DHCPv4 (Solo Router)</div>
+            <form action="" id="pDHCP" style="display:none;">
+                <label for="nPool">Nombre del Pool: </label>
+                <input type="text" name="namePool" id="namePool">
+                <br>
+                <label for="defRout">Default Router: </label>
+                <input type="text" name="defRout" id="defRout">
+                <br>
+                <label for="dnsServer">Servidor DNS: </label>
+                <input type="text" name="dnsServer" id="dnsServer">
+                <br>
+                <label for="domainPool">Dominio: </label>
+                <input type="text" name="domainPool" id="domainPool">
+                <br>
+                <label for="net">Network: </label>
+                <input type="text" name="net" id="net" placeholder="ID MASK">
+                <button onclick="mandarCrearPoolDHCPv4();">Hecho</button>
+            </form>
+            <div class="optionBox" onclick="cifrarContraseñas();">Cifrar Contraseñas</div>
+            <p style="display: none;" id="passEncrypted">Contraseñas Cifradas Correctamente</p>
+            <div class="optionBox" onclick="sincronizarMensajes();">Sincronizar Mensajes del Sistema</div>
+            <p style="display: none;" id="msgSync">Mensajes del Sistema Sincronizados Correctamente</p>
+            <div class="optionBox" onclick="mandarShVer();">Ver Información del Dispositivo</div>
+            <div class="optionBox" onclick="mandarShRunn();">Ver Configuración Actual</div>
+            <div class="optionBox" onclick="mandarShLicense();">Ver Licencias (Solo Router)</div>
+            <div class="optionBox" onclick="mandarShIntBr();">Ver Información de las Interfaces</div>
+            <div class="optionBox" onclick="mandarShProcesses();">Ver Uso de CPU</div>
+        </div>   
     </div>
+    <div id="outputDiv"></div>
+    
+    
 </body>
 </html>

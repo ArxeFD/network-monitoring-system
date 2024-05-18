@@ -1,0 +1,87 @@
+/* Your existing CSS */
+body {
+    background-color: beige;
+    font-size: 16px; 
+    margin: 0;
+}
+
+.header {
+    background-color: #bfa77f;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    width: 100%;
+}
+
+.logout button {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    cursor: pointer;
+    padding: 20px 40px; 
+    background-color: transparent; 
+    color: #fff; 
+    border: none;
+    font-size: 25px; 
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+#myDiagramDiv {
+    height: 575px;
+    background-color: #FFFFFF;
+    border-top: solid black;
+    border-bottom: solid black;
+    border-left: solid black;
+    flex-grow: 3;
+}
+
+#optionsDiv{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    background-color: beige;
+    border: solid black;
+    width: 450px;
+}
+
+.optionBox{
+    background-color: #bfa77f;
+    color: #FFFFFF;
+    border: none;
+    padding: 20px 40px; 
+    font-size: 18px; 
+    margin-bottom: 30px;
+    cursor: pointer;
+    text-align: center;
+    width: 200px;
+}
+
+#inputDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#inputDiv input {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#inputDiv button {
+    padding: 10px 20px;
+}
+
+#outputDiv{
+    background-color: white;
+    border: solid black;
+    border-radius: 5%;
+    width: 1000px;
+    margin-left: 15px;
+    margin-top: -985px;
+    text-align: center;
+}

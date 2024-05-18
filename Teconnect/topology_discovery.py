@@ -18,6 +18,9 @@ def startDiscovery(username, password):
 
     ip = queueToConnect.pop()
 
+    if ip == '':
+        return
+
     ips.append(ip)
 
     device = {
@@ -59,12 +62,19 @@ def findDeviceNeighbors(conn): #Pongo de dónde a donde está conectado
     output = conn.send_command("show cdp neigh detail", use_textfsm=True)
     for i in output:
         neighDict = {'from': conn.host, 'to' : i["management_ip"], 'fromInt' : i["local_port"], 'toInt' : i["remote_port"]}
+        if neighDict['to'] == '':
+            continue
         neighbors.append(neighDict)
 
 def addToQueue(conn): #Agrego a la cola ips que no estén en ips para no hacer bucles
     output = conn.send_command("show cdp neigh detail", use_textfsm=True)
     for i in output:
-        if i["management_ip"] not in ips:
+        management_ip = i["management_ip"]
+        if management_ip.startswith("148"):
+            localPort = i["local_port"]
+            natNodeAndLink(conn, management_ip, localPort)
+            continue
+        if management_ip not in ips:
             queueToConnect.add(i["management_ip"])
 
 def checkForSameDevice():
@@ -81,6 +91,7 @@ def ipsRelatedToKey(conn): #Agrego ips relacionadas a la ip del host al que me c
 
 def updateLinksWithRelatedIPs():
     global neighbors, relatedToKeyList
+    
     for link in neighbors:
         to_ip = link['to']
         for related_ips_dict in relatedToKeyList:
@@ -88,6 +99,12 @@ def updateLinksWithRelatedIPs():
                 if to_ip in related_ips:
                     link['to'] = device_ip
 
+#Funcion excluisva para cuando salga la ip pública
+def natNodeAndLink(conn, natIp, fromPort):
+    neighDict = {'from': conn.host, 'to' : natIp, 'fromInt' : fromPort, 'toInt' : ''}
+    natNode = {'key': natIp, 'foot': 'Internet', 'img': 'static/img/cloud-svgrepo-com.svg'}
+    neighbors.append(neighDict)
+    nodes.append(natNode)
 
 #Funciones necesarias para crear los objetos y agregar nodos
 def checkHostname(conn):
@@ -97,7 +114,7 @@ def checkHostname(conn):
 
 def checkDevice(conn):
     output = conn.send_command("show ip int brief", use_textfsm=True)
-    if len(output) > 6:
+    if len(output) > 10:
         device = "Switch"
     else:
         device = "Router"
@@ -122,12 +139,28 @@ def returnNodes():
 def returnNeighbors():
     return neighbors
 
+#Funciones para redescubrir la red
+def restartIps():
+    global ips
+    ips = list()
+def restartNeighbors():
+    global neighbors
+    neighbors = list()
+def restartRelatedToKey():
+    global relatedToKeyList
+    relatedToKeyList = list()
+def restartDevicesObj():
+    global DevicesObj
+    DevicesObj = list()
+def restartNodes():
+    global nodes
+    nodes = list()
 '''
 startDiscovery()
 addNodes()
 updateLinksWithRelatedIPs()
-print(neighbors)
 print("\n")
-print(nodes)
 print(relatedToKeyList)
+print(nodes)
+print(neighbors)
 '''

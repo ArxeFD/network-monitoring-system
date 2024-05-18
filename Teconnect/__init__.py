@@ -18,6 +18,7 @@ from Teconnect.routes.routes import *
 # Ahora importa modelos después de crear db
 from Teconnect.models.models import User
 from Teconnect.routes import routesIO
+from Teconnect.routes import RoutesConf
 
 #Aunque routes está en la misma carpeta, se tiene que importar desde la relación
 #que tiene con otras carpetas para python, o sea no importa que routes esté
